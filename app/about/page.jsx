@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { useStore } from '../store/store'
+import { useStore } from '../zustand/store'
 import Button from '../components/button'
 
 const About = () => {

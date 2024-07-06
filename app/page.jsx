@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Button from "./components/button";
 import CountText from "./components/countText";
-import { useStore } from "./store/store";
+import { useStore } from "./zustand/store";
 
 
 export default function Home() {
