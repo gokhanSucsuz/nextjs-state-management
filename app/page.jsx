@@ -12,9 +12,9 @@ import { useUser } from "./context/userContext";
 export default function Home() {
   const dispatch = useDispatch()
   const [user, setUser] = useState({ name: "", email: "" })
-  const increase = (state) => state.increase;
-  const decrease = (state) => state.decrease;
-  const clear = (state) => state.clear;
+  const increase = useStore((state) => state.increase);
+  const decrease = useStore((state) => state.decrease);
+  const clear = useStore((state) => state.clear);
   const { myName, changeName } = useUser()
   return (
     <main className="flex flex-col items-center  p-24">
