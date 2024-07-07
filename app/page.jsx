@@ -43,9 +43,9 @@ export default function Home() {
           {JSON.stringify(user)}
           <button className="p-2 bg-orange-800 text-white rounded-lg" onClick={() => dispatch(userSet(user))}>Sign In</button>
           <div>
-            <h1>Context Api</h1>
+            <h1 className="font-bold">Context Api</h1>
             <p>{myName}</p>
-            <button className="p-2 bg-orange-800 text-white rounded-lg" onClick={() => changeName(user.name)}>Change Name</button>
+            <button className="p-2 bg-orange-800 text-white rounded-lg " onClick={() => changeName(user.name)}>Change Name</button>
           </div>
         </div>
       </div>
