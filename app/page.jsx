@@ -6,12 +6,14 @@ import { useStore } from "./zustand/store";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSet } from "./slice/userSlice";
+import { useUser } from "./context/userContext";
 
 
 export default function Home() {
   const dispatch = useDispatch()
   const [user, setUser] = useState({ name: "", email: "" })
   const { increase, decrease, clear } = useStore((state) => state)
+  const { myName, changeName } = useUser()
   return (
     <main className="flex flex-col items-center  p-24">
       <div className="border p-5 rounded-lgs shadow-lg">
@@ -38,7 +40,11 @@ export default function Home() {
           </div>
           {JSON.stringify(user)}
           <button onClick={() => dispatch(userSet(user))}>Sign In</button>
-
+          <div>
+            <h1>Context Api</h1>
+            <p>{myName}</p>
+            <button onClick={() => changeName(user.name)}>Change Name</button>
+          </div>
         </div>
       </div>
     </main>
