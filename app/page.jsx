@@ -4,32 +4,42 @@ import Button from "./components/button";
 import CountText from "./components/countText";
 import { useStore } from "./zustand/store";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userSet } from "./slice/userSlice";
 
 
 export default function Home() {
-  const [user, setUser] = useState({ username: "", usermail: "" })
+  const dispatch = useDispatch()
+  const [user, setUser] = useState({ name: "", email: "" })
   const { increase, decrease, clear } = useStore((state) => state)
   return (
-    <main className="flex min-h-screen flex-col items-center  p-24">
-      <h1>Home Page</h1>
-      <CountText />
-      <Button onClick={increase} />
-      <button onClick={clear}>Clear</button>
-      <button onClick={() => decrease(Math.random() * 100)}>Decrease</button>
-      <Link href="/about">About Page</Link>
-      <div className="flex flex-col gap-3">
-        <div>
-          <p>Username</p>
-          <input value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} type="text" name="username" id="username" />
+    <main className="flex flex-col items-center  p-24">
+      <div className="border p-5 rounded-lgs shadow-lg">
+        <h1>Home Page</h1>
+        <div className="border p-5 flex flex-col gap-2">
+          <h1 className="font-bold">Zustand</h1>
+          <CountText />
+          <Button onClick={increase} />
+          <button className="p-2 bg-orange-800 text-white rounded-lg" onClick={clear}>Clear</button>
+          <button className="p-2 bg-orange-800 text-white rounded-lg" onClick={() => decrease(Math.random() * 100)}>Decrease</button>
+          <Link className="p-2 bg-orange-800 text-white text-center rounded-lg" href="/about">About Page</Link>
         </div>
-        <div>
-          <p>Mail</p>
-          <input value={user.email} onChange={(e) =>
-            setUser({ ...user, usermail: e.target.value })
-          } type="text" name="usermail" id="usermail" />
+        <div className="flex flex-col gap-3">
+          <h1 className="font-bold">Redux Toolkit</h1>
+          <div>
+            <p>Username</p>
+            <input value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} type="text" name="username" id="username" />
+          </div>
+          <div>
+            <p>Mail</p>
+            <input value={user.email} onChange={(e) =>
+              setUser({ ...user, email: e.target.value })
+            } type="text" name="usermail" id="usermail" />
+          </div>
+          {JSON.stringify(user)}
+          <button onClick={() => dispatch(userSet(user))}>Sign In</button>
+
         </div>
-        {JSON.stringify(user)}
-        <button onClick={() => alert("Success!")}>Sign In</button>
       </div>
     </main>
   );

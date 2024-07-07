@@ -4,7 +4,6 @@ import { useStore } from '../zustand/store'
 
 const CountText = () => {
     const count = useStore((state) => state.count)
-    console.log(count)
     return (
         <div>
             {count}
